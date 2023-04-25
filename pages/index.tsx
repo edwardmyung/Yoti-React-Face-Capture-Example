@@ -1,13 +1,25 @@
 import Head from 'next/head'
 
 import styles from '@/styles/Home.module.css'
-import dynamic from 'next/dynamic'
+// import dynamic from 'next/dynamic'
+
+// import '@getyoti/react-face-capture/index.css'
+import { useState } from 'react'
+// const FaceCapture = dynamic(() => import('@getyoti/react-face-capture'), { ssr: false })
 
 
-import '@getyoti/react-face-capture/index.css'
-const FaceCapture = dynamic(() => import('@getyoti/react-face-capture'), { ssr: false })
+const TestComponent = ({ setSomething }) => {
+  setSomething(true)
+  return (
+    <div>
+      Test
+    </div>
+  )
+}
 
 export default function Home() {
+  const [something, setSomething] = useState(false)
+
   return (
     <>
       <Head>
@@ -17,11 +29,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <FaceCapture
+        {/* <FaceCapture
           onSuccess={(args) => console.log('success', args)}
           onError={() => console.log('error')}
           faceCaptureAssetsRootUrl='yoti-assets/face-capture'
-        />
+        /> */}
+        <TestComponent setSomething={setSomething} />
       </main>
     </>
   )
